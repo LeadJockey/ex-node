@@ -44,7 +44,7 @@ http.createServer(function(req, res) {
 }).listen(port);
 ```
 이렇게 해서 hello world까지 찍어 보았다.  
-다음시간에는 express를 통해서 서버를 구성해 보도록 하자.
+다음시간에는 노드에서 모듈을 사용하는 방법을 알아 보도록 하자.
 
 ### next()
-| 이동 : ex-node.examples.ex2-express.md 
+| 이동 : ex-node.examples.ex2-modules.md 
