@@ -21,4 +21,4 @@
 
 ### 실습
 
-| 이동 : ex-node.examples.ex1-helloWorld.md 
+| 이동 : ex-node.examples.ex1-hello-world.md 

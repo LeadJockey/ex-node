@@ -1,12 +1,12 @@
 ### 간단한 노드 서버를 만들어서 hello world 찍어봅시다.
 | 뭐든 시작은 hello world 아니것습니까... -by shawn.thecool
 
-## 준비
+### 준비
 ```code
 npm init      -- package.json 생성
 npm i express -- node_modules 생성
 ```
-## 우선 import 하는 방법을 알아보죠  
+### 우선 import 하는 방법을 알아보죠  
 노드에서는 서버와 클라이언트간의 request / response 를 처리할수 있는 모듈을 제공합니다.  
 ```javascript
 var http = require('http'); // 노드에서 모듈의 import는 이러한 형식으로 이루어 집니다 require(모듈이름)
@@ -40,7 +40,11 @@ var port = 8000;
 http.createServer(function(req, res) {
     console.log('server listening on port '+port);
     res.writeHead(200,{'Content-Type':'text/plain'}); // 클라이언트에게 보내줄 문서의 헤더정보 
-    res.end('HELLO WORLD!!'); // 보내줄 문서의 내용
+    res.end('HELLO WORLD!!');                         // 보내줄 문서의 내용
 }).listen(port);
 ```
+이렇게 해서 hello world까지 찍어 보았다.  
+다음시간에는 express를 통해서 서버를 구성해 보도록 하자.
 
+### next()
+| 이동 : ex-node.examples.ex2-express.md 
