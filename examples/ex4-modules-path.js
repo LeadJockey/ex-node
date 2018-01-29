@@ -11,7 +11,7 @@ var path = require('path'); //https://nodejs.org/api/path.html
 //Mac 확인해 봅시다
 console.log(path.basename('C:\\temp\\myfile.html')); // C:\temp\myfile.html
 
-//basename(경로[,ext]) : 마지막 부분을 잡아옵니다
+//basename(경로[,ext]) : 파일 반환 (파일이름 + 확장자)
 
 var testPath = 'user/javascript/node/join.html';
 console.log(path.basename(testPath)); // join.html
@@ -19,10 +19,48 @@ console.log(path.basename(testPath)); // join.html
 console.log(testPath.split(path.sep)); // [ 'user', 'javascript', 'node', 'join.html' ]
 console.log(path.basename(testPath,'.html')); // join
 
-//path.dirname(path) : 파일 경로들을 불러옵니다
+//path.dirname(path) : 파일 경로 반환
 console.log(path.dirname(testPath)); //user/javascript/node
 
-//
+//path.extname(path) : 확장자명 반환
+console.log(path.extname(testPath));
+
+var dirname = path.dirname(testPath); //user/javascript/node
+var extname = path.extname(testPath); //.html
+var basename = path.basename(testPath,extname); //join
+var newTestPath = dirname +"/"+ basename + extname; //user/javascript/node/join.html
+
+//path.join([...paths])
+
+var newTestPath2 = path.join(dirname, basename+extname); //user/javascript/node/join.html
+
+console.log(testPath === newTestPath);
+console.log(testPath === newTestPath2);
+
+//path.format(pathObject)
+
+//이번에는 path 객체를 통해서 경로들을 관리해 보자
+
+var pathObject = {
+  root: '/ignored',
+  dir: '/home/user/dir',
+  base: 'file.txt'
+};
+var pathObject2 ={
+  root: '/',
+  base: 'file.txt',
+  ext: 'ignored'
+};
+var pathObject3 = {
+  root: '/',
+  name: 'file',
+  ext: '.txt'
+};
+console.log('pathObj  : ', path.format(pathObject));
+console.log('pathObj2 : ', path.format(pathObject2));
+console.log('pathObj3 : ', path.format(pathObject3));
+
+
 
 //// tip : process 환경변수
 //var ENV = process.env;
