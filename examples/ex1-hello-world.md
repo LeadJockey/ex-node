@@ -47,4 +47,4 @@ http.createServer(function(req, res) {
 다음시간에는 노드에서 모듈을 사용하는 방법을 알아 보도록 하자.
 
 ### next()
-| 이동 : ex-node.examples.ex2-modules.md 
+| 이동 : [ex-node.examples.ex2-modules.md][ https://github.com/LeadJockey/ex-node/blob/master/examples/ex2-modules.md]
