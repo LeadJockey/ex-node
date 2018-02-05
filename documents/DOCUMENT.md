@@ -17,8 +17,17 @@
 4. 자바스크립트 사용
 
 ### 노드 아키텍쳐
-![Image](node-pic-1.png)
+![Image](../examples/images/node-pic-1.png)
 
 ### 실습
 
-| 이동 : ex-node.examples.ex1-hello-world.md 
+- [실습하기](https://github.com/LeadJockey/ex-node/blob/master/examples/md/ex1-hello-world.md)  
+- [실습코드](https://github.com/LeadJockey/ex-node/blob/master/examples/js/ex1-hello-world.js)
+
+### 공부하면서 참조한 자료
+
+- 유튜브 : [(do it node.js)](https://www.youtube.com/watch?v=4DPdcfbGSps&index=7&list=PLG7te9eYUi7tHH-hJ2yzBJ9h6dwBu1FUy)
+- 도서   : do it node.js
+- 블로그 : [(제로초)](https://www.zerocho.com/category/NodeJS/post/57387cb8715202c8679b3af1)
+- 블로그 : [(벨로퍼트)](https://velopert.com/node-js-tutorials)
+- 블로그 : [(솜털공장)](http://html5around.com/wordpress/tutorials/node-js%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-todo%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EC%A0%9C%EC%9E%91/) 

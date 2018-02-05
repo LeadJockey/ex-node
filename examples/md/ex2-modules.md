@@ -6,7 +6,7 @@
 
 ```javascript
 // 모듈을 export 할떈 export객체에 추가 해준다
-var clac = {};
+const clac = {};
 
 clac.add = function (a,b) {
   return a + b;
@@ -21,7 +21,7 @@ module.exports = clac;
 
 - ex2-modules.js 라는 파일에서 해당 모듈을 불러와서 사용해 보자
 ```javascript
-var clac = require('./ex2-modules-clac.js');
+const clac = require('./ex2-modules-clac.js');
 
 console.log(clac.add(1,2));      //3
 console.log(clac.multiply(2,2)); //4
@@ -32,8 +32,9 @@ console.log(clac.multiply(2,2)); //4
 ### 내장모듈과 외장모듈
 모듈을 직접 만들어 사용하는 방법 : 내장모듈  
 다른 사람들이 만들어 놓은 외부 패키지를 설치 후 사용하는 방법 : 외장모듈  
-- 내장 모듈에 대하서는 http://nodejs.org/api 를 참조
+내장 모듈에 대하서는 http://nodejs.org/api 참조
 
-이번에 다룰 모듈은 os / path이다.
+공식 문서에 설명이 잘 되어 있음으로 사용하기 전에 꼭 읽어봅니다 핥핥!
 
-ex2-modules.js를 수정해 보자
+### next()
+| 이동 : [ex-node.examples.md.ex3-modules.md](https://github.com/LeadJockey/ex-node/blob/master/examples/ex2-modules.md)

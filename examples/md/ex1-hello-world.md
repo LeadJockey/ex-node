@@ -9,11 +9,11 @@ npm i express -- node_modules 생성
 ### 우선 import 하는 방법을 알아보죠  
 노드에서는 서버와 클라이언트간의 request / response 를 처리할수 있는 모듈을 제공합니다.  
 ```javascript
-var http = require('http'); // 노드에서 모듈의 import는 이러한 형식으로 이루어 집니다 require(모듈이름)
+const http = require('http'); // 노드에서 모듈의 import는 이러한 형식으로 이루어 집니다 require(모듈이름)
 ```
 ## 서버생성
 ```javascript
-var port = 8000;  
+const port = 8000;  
 
 http.createServer(function(req, res) {
     console.log('server listening on port '+port);
@@ -35,9 +35,9 @@ scripts 하단에 시작 명령어를 기입하도록 하자 터미널에 node +
 ### request에 따른 response 입력 바로 HELLO WORLD!!
 
 ```javascript
-var port = 8000;  
+const port = 8000;  
 
-http.createServer(function(req, res) {
+http.createServer((req, res) =>{
     console.log('server listening on port '+port);
     res.writeHead(200,{'Content-Type':'text/plain'}); // 클라이언트에게 보내줄 문서의 헤더정보 
     res.end('HELLO WORLD!!');                         // 보내줄 문서의 내용
@@ -47,4 +47,4 @@ http.createServer(function(req, res) {
 다음시간에는 노드에서 모듈을 사용하는 방법을 알아 보도록 하자.
 
 ### next()
-| 이동 : [ex-node.examples.ex2-modules.md](https://github.com/LeadJockey/ex-node/blob/master/examples/ex2-modules.md)
+| 이동 : [ex-node.examples.md.ex2-modules.md](https://github.com/LeadJockey/ex-node/blob/master/examples/ex2-modules.md)
