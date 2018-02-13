@@ -17,7 +17,7 @@
 4. 자바스크립트 사용
 
 ### 노드 아키텍쳐
-![Image](../examples/images/node-pic-1.png)
+![Image](images/node-pic-1.png)
 
 ### 실습
 
