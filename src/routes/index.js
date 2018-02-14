@@ -1,8 +1,12 @@
+const express = require('express');
+const router  = express.Router();
 const route = {};
 
+route.get = (req, res) => {
+  res.render('pages/user/index',{msg:`type : get`})
+};
+
 route.load = (rootPath, app, schemas) => {
-  const express = require('express');
-  const router  = express.Router();
   schemas.forEach((scma) => {
     let fileName   = scma.file;
     let reqPath    = scma.path;
