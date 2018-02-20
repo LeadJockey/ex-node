@@ -1,42 +1,72 @@
-const express      = require('express');
-const app          = express();
-const path         = require('path');
-const config       = require('./config');
-const router       = require('./routes');
-const logger       = require('./log');
-const tester       = require('./test');
-//const bodyParser   = require('body-parser');
-const expressHbs   = require('express-handlebars');
-//const errorHandler = require('express-error-handler');
+const express             = require( 'express' );
+const app                 = express();
+const path                = require( 'path' );
+const config              = require( './config' );
+const cookieParser        = require( 'cookie-parser' );
+const expressSession      = require( 'express-session' );
+const mongoose            = require( 'mongoose' );
+const database            = mongoose.connection;
+const Test                = require( './model/test' );
+const router              = require( './routes' );
+const store               = require( './routes/store' );
+const error               = require( './routes/error' );
+const api_test            = require( './routes/api/test' );
+const cookie              = require( './routes/process/cookie' );
+const session             = require( './routes/process/session' );
+const logger              = require( './log' );
+const tester              = require( './test' );
+const expressHbs          = require( 'express-handlebars' );
+const expressErrorHandler = require( 'express-error-handler' );
+const errorHandler        = expressErrorHandler( config.error_handler );
+const viewPath            = path.join( __dirname, 'views' );
+const bodyParser          = require( 'body-parser' );
 
-const viewPath = path.join(__dirname, 'views');
+
+//데이터베이스 설정
+database.on( 'error', console.error );
+database.once( 'open', () => {console.log( 'Connected to mongo server' );} );
+mongoose.connect( config.db_url );
 
 //엔진 설정
-app.engine('.hbs', expressHbs(config.view_engine));
+app.engine( '.hbs', expressHbs( config.view_engine ) );
 
 //속성 설정
-app.set('port', config.server_port || 3000);
-app.set('views', path.join(viewPath));
-app.set('view engine', '.hbs');
+app.set( 'port', config.server_port || 3000 );
+app.set( 'views', path.join( viewPath ) );
+app.set( 'view engine', '.hbs' );
 
 //미들웨어 설정
-//app.use(bodyParser.json()); // for parsing application/json - test 중
-//app.use(bodyParser.urlencoded(config.body_parser)); // for parsing application x-www-form-urlencoded - test 중
-app.use(logger);
-app.use(tester);
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json()); // for parsing application/json - test 중
+app.use(bodyParser.urlencoded(config.body_parser)); // for parsing application x-www-form-urlencoded - test 중
 
-//라우트 설정
-router.load('/', app, config.route_schemas);
+app.use( logger );
+app.use( tester );
+app.use( express.static( path.join( __dirname, 'public' ) ) );
+app.use( '/static', express.static( path.join( __dirname, 'public' ) ) );
 
-//에러 핸들러
-//app.use(errorHandler.httpError(404,`뭔가 보여드리고 싶은게 있었는데.. 지금은 찾을 수 없네요. 잠시 후 다시 시도해 주세요;`));
-//app.use( errHandler );
+//쿠키 설정 - 라우터와 연계
+app.use( cookieParser() );
+//세션 설정 - 라우터와 연계
+app.use( expressSession( config.express_session ) );
 
+//라우트 설정 (모듈화된 라우트 객체를 미들웨어로 등록)
+app.use( '/process/cookie', cookie );
+app.use( '/process/session', session );
+app.use( '/store', store );
+api_test( app, Test );
+
+//라우트 설정 (라우드 로드 함수를 이용해서 로드해보기)
+router.load( '/', app, config.route_schemas );
+
+//라우트 에러 페이지 설정
+app.use( '*', error );
+
+//에러 헨들러 설정
+app.use( expressErrorHandler.httpError( 404 ) );
+app.use( errorHandler );
 
 //서버 설정
-app.listen(app.get('port'), () => console.log('server listening on port' + app.get('port')));
+app.listen( app.get( 'port' ), () => console.log( 'server listening on port' + app.get( 'port' ) ) );
 
 module.exports = app;
 
